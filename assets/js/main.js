@@ -22,11 +22,10 @@ app.controller('Home', function($scope, $http, $timeout, alertify) {
 
 
     $scope.todos = [];
-
-    var base_url = window.location.origin;
+    var base_url = $scope.base;
     var data = {};
     $.ajax({
-        url: base_url + "/welcome/getTodos_Json",
+        url: base_url + "welcome/getTodos_Json",
         data: data,
         type: 'get',
         dataType: 'json',
@@ -54,7 +53,7 @@ app.controller('Home', function($scope, $http, $timeout, alertify) {
     $scope.todos = [];
     $scope.change = function(text) {
         valtosend = $scope.searchText;
-        $http.get(base_url + "/welcome/AjaxSearch/" + valtosend)
+        $http.get(base_url + "welcome/AjaxSearch/" + valtosend)
             .then(function(result) {
                 data = result.data;
                 $scope.todos = [];
@@ -99,7 +98,7 @@ app.controller('Home', function($scope, $http, $timeout, alertify) {
         $.ajax({
             type: "POST",
             data: { name: text },
-            url: base_url + "/welcome/setTodos",
+            url: base_url + "welcome/setTodos",
             success: () => {
                 alertify.delay(4000).success("succesfully added!");
                 $scope.$apply();
@@ -170,7 +169,7 @@ app.controller('Home', function($scope, $http, $timeout, alertify) {
                     $.ajax({
                         type: "POST",
                         data: { name: item.text },
-                        url: base_url + "/welcome/updateTodos/" + item.id,
+                        url: base_url + "welcome/updateTodos/" + item.id,
                         success: () => {
                             //console.log(data);
                             alertify.delay(4000).success("Item was successfully Edited!");
@@ -199,7 +198,7 @@ app.controller('Home', function($scope, $http, $timeout, alertify) {
         $.ajax({
             type: "POST",
             data: { status: (item.done === true ? 1 : 0), name: item.text },
-            url: base_url + "/welcome/updateTodosToggle/" + item.id,
+            url: base_url + "welcome/updateTodosToggle/" + item.id,
             success: () => {
                 alertify.delay(4000).success("Item was successfully Edited!");
                 $scope.$apply();
@@ -229,7 +228,7 @@ app.controller('Home', function($scope, $http, $timeout, alertify) {
                 $.ajax({
                     type: "POST",
                     data: { id: item.id },
-                    url: base_url + "/welcome/deleteTodos/" + item.id,
+                    url: base_url + "welcome/deleteTodos/" + item.id,
                     success: () => {
                         alertify.delay(4000).success("Item was successfully removed!");
                         $scope.$apply();

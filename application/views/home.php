@@ -22,6 +22,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
     <header>
         <h1>ToDo List 2020 <small>v1.0.0</small></h1>
+        <input type="hidden" ng-init="base='<?php echo base_url(); ?>'" />
         <p>
             <i class="fa fa-magic"></i> A simple <strong> to-do list </strong> Web Application By <small>「ogur」</small>
         </p>
